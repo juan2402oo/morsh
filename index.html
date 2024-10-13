@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres ser mi novia?</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #ff6b6b;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            margin-bottom: 50px;
+        }
+
+        /* Ajuste del tamaño del texto y botones para diferentes pantallas */
+        @media screen and (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .button {
+                font-size: 1.2em;
+                padding: 10px 20px;
+            }
+        }
+
+        /* Botón genérico */
+        .button {
+            font-size: 1.5em;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+            margin: 10px;
+        }
+
+        /* Estilo del botón de aceptar */
+        .accept {
+            background-color: #28a745;
+            color: #fff;
+        }
+
+        .accept:hover {
+            background-color: #218838;
+            transform: scale(1.1);
+        }
+
+        /* Botón de rechazar */
+        .reject {
+            background-color: #dc3545;
+            color: #fff;
+            position: absolute;
+        }
+
+        /* Mensaje final después de aceptar */
+        .final-message {
+            display: none;
+            font-size: 2em;
+            color: #fff;
+            margin-top: 20px;
+        }
+
+        .final-message.visible {
+            display: block;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>¿Quieres ser mi novia?</h1>
+
+    <!-- Botón de Aceptar -->
+    <button class="button accept" onclick="showMessage()">Aceptar</button>
+
+    <!-- Botón de Rechazar que se mueve aleatoriamente -->
+    <button class="button reject" id="rejectBtn" onmouseover="moveButton()" onclick="moveButton()">Rechazar</button>
+
+    <!-- Mensaje final -->
+    <div class="final-message" id="finalMessage">
+        ¡Ya sabía que querías estar conmigo! ❤️
+    </div>
+
+    <script>
+        // Función para mover el botón de rechazar a una posición aleatoria
+        function moveButton() {
+            const rejectBtn = document.getElementById('rejectBtn');
+            const x = Math.random() * (window.innerWidth - rejectBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - rejectBtn.offsetHeight);
+            rejectBtn.style.left = x + 'px';
+            rejectBtn.style.top = y + 'px';
+        }
+
+        // Mostrar el mensaje final después de hacer clic en Aceptar
+        function showMessage() {
+            document.getElementById('finalMessage').classList.add('visible');
+        }
+    </script>
+
+</body>
+</html>
